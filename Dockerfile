@@ -1,8 +1,8 @@
 # Używamy oficjalnego obrazu Pythona jako podstawy
 FROM python:3.10-slim
 
-# Ustawiamy zmienną PORT (domyślnie 8080, można nadpisać przy uruchamianiu)
-ENV PORT=8080
+# Ustawiamy zmienną PORT
+ENV PORT=8081
 
 # Tworzymy katalog aplikacji
 WORKDIR /app
