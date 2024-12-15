@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  DOCKER_USERNAME: kogonek
+  DOCKER_PASSWORD: ${{secrets.DOCKER_ACCESS_TOKEN}}
+
 jobs:
   build-and-run:
     runs-on: ubuntu-latest
@@ -18,12 +22,20 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
+    # Logowanie do Docker Hub (jeśli wymagane)
+    - name: Log in to Docker Hub
+      if: secrets.DOCKER_USERNAME && secrets.DOCKER_PASSWORD
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
     # Budowanie obrazu dla wielu architektur z wykorzystaniem cache
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
         context: .
-        push: false
+        push: true
         tags: |
           my-docker-image:latest
           my-docker-image:${{ github.sha }}
@@ -46,4 +58,5 @@ jobs:
     - name: Test Container
       run: |
         curl http://localhost:8081
+
 
