@@ -109,4 +109,6 @@ o informację zawarte w materiałach laboratoryjnych jak i dokumentacji środowi
 https://github.com/docker/scout-action
 https://docs.docker.com/scout/integrations/ci/gha/_
 
-Niestety udało mi się to zadanie wykonać tylko w połowie, ponieważ napotkałem problem z logowaniem do docker desktop. Jednakże, plik yaml z użyciem docker actions który wykonuje zadanie 1 znajduje się w repozytorium.
+Niestety udało mi się to zadanie wykonać tylko w połowie, ponieważ napotkałem problem z pushowaniem obrazu do docker hub:
+Error: buildx failed with: ERROR: failed to solve: failed to push my-docker-image:latest: push access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+Jest to najprawdopodobniej problem z samym repozytorium, ponieważ logowanie przebiegło pomyślnie zgodnie z logami github action.
