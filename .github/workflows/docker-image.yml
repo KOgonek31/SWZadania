@@ -20,11 +20,12 @@ jobs:
         docker build -t my-docker-image:latest .
 
      # Testowanie podatności obrazu przy użyciu Docker Scout
-    - name: Analyze vulnerabilities with Docker Scout
-      uses: docker/scout-action@v1
-      with:
-        image: my-docker-image:latest
-        token: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+     # Nie działa, więc zakomentowane
+      #- name: Analyze vulnerabilities with Docker Scout
+      #uses: docker/scout-action@v1
+      #with:
+      # image: my-docker-image:latest
+      # token: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
     # Uruchomienie kontenera
     - name: Run Docker container
