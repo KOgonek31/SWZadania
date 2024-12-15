@@ -24,6 +24,12 @@ jobs:
       run: |
         docker run -d -p 8081:8081 -e PORT=8081 --name my-docker-container my-docker-image:latest
 
+    - name: Wait for the server to start
+      run: sleep 5
+
+    - name: Print Docker container logs
+      run: docker logs my-docker-container
+      
     # Sprawdzenie działania kontenera
     - name: Test Container
       run: |
