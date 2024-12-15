@@ -22,7 +22,7 @@ jobs:
     # Uruchomienie kontenera
     - name: Run Docker container
       run: |
-        docker run -d -p 8081:8081 --name my-docker-container my-docker-image:latest
+        docker run -d -p 8081:8081 -e PORT=8081 --name my-docker-container my-docker-image:latest
 
     # Sprawdzenie działania kontenera
     - name: Test Container
