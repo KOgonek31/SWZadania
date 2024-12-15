@@ -1,3 +1,4 @@
+# Krzysztof Ogonek
 # Używamy oficjalnego obrazu Pythona jako podstawy
 FROM python:3.10-slim
 
@@ -9,9 +10,6 @@ WORKDIR /app
 
 # Kopiujemy plik serwera do kontenera
 COPY server.py /app/server.py
-
-# Instalujemy wymagane pakiety (jeśli potrzebne)
-# RUN pip install -r requirements.txt
 
 # Określamy, na jakim porcie serwer nasłuchuje
 EXPOSE $PORT
