@@ -94,3 +94,19 @@ IMAGE      	CREATED      	CREATED BY                                  	SIZE  	CO
 <missing>  	11 days ago  	ENV PATH=/usr/local/bin:/usr/local/sbin:/usr…   0B    	buildkit.dockerfile.v0
 <missing>  	13 days ago  	# debian.sh --arch 'amd64' out/ 'bookworm' '…   85.2MB	debuerreotype 0.15
 ```
+
+# SWZad2
+
+_Podstawą do wykonania zadania jest przykład analizowany w trakcie laboratorium nr 9. Przykład ten
+zawiera łańcuch CI dla usługi Github Actions pozwalający na zbudowanie obrazu Docker dla dwóch
+architektur sprzętowych wraz z metodą tagowania tego obrazu oraz z wykorzystaniem cache
+w procesie jego budowania.
+Proszę KONIECZNIE zapoznać się z dokumentacją i przykładami dostarczonymi przez Docker:
+https://docs.docker.com/build/ci/github-actions/
+Odpowiednio zmodyfikowany opis workflow należy uzupełnić o testowanie obrazu pod kątem
+podatności na zagrożenia w oparciu o usługę Docker Scout. Sposób uzupełnienia łańcucha opiera się
+o informację zawarte w materiałach laboratoryjnych jak i dokumentacji środowiska Docker:
+https://github.com/docker/scout-action
+https://docs.docker.com/scout/integrations/ci/gha/_
+
+Niestety udało mi się to zadanie wykonać tylko w połowie, ponieważ napotkałem problem z logowaniem do docker desktop. Jednakże, plik yaml z użyciem docker actions który wykonuje zadanie 1 znajduje się w repozytorium.
