@@ -110,7 +110,9 @@ https://github.com/docker/scout-action
 https://docs.docker.com/scout/integrations/ci/gha/_
 
 Niestety udało mi się to zadanie wykonać tylko w połowie, ponieważ napotkałem problem z pushowaniem obrazu do docker hub:
+```
 Error: buildx failed with: ERROR: failed to solve: failed to push my-docker-image:latest: push access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+```
 Jednakże, obrazy widnieją w moim repozytorium docker hub:
 ![image](https://github.com/user-attachments/assets/3ba3b7d2-6e19-4ddd-bb7b-4b530df779bf)
 
