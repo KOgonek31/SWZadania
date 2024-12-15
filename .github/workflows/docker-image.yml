@@ -33,8 +33,8 @@ jobs:
         context: .
         push: true
         tags: |
-          my-docker-image:latest
-          my-docker-image:${{ github.sha }}
+          kogonek/my-docker-image:latest
+          kogonek/my-docker-image:${{ github.sha }}
         platforms: linux/amd64,linux/arm64
         cache-from: type=registry,ref=my-docker-image:cache
         cache-to: type=registry,ref=my-docker-image:cache,mode=max
