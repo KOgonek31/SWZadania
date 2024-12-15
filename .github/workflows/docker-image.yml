@@ -1,4 +1,4 @@
-name: Build and Run Docker Container
+name: Build and Run Multi-Architecture Docker Image
 
 on:
   push:
@@ -10,24 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Sprawdź kod z repozytorium
+    # Sprawdzenie kodu z repozytorium
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Budowanie obrazu Docker
-    - name: Build Docker image
-      run: |
-        docker build -t my-docker-image:latest .
+    # Konfiguracja Docker Buildx
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
 
-     # Testowanie podatności obrazu przy użyciu Docker Scout
-     # Nie działa, więc zakomentowane
-      #- name: Analyze vulnerabilities with Docker Scout
-      #uses: docker/scout-action@v1
-      #with:
-      # image: my-docker-image:latest
-      # token: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+    # Budowanie obrazu dla wielu architektur z wykorzystaniem cache
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: false
+        tags: |
+          my-docker-image:latest
+          my-docker-image:${{ github.sha }}
+        platforms: linux/amd64,linux/arm64
+        cache-from: type=registry,ref=my-docker-image:cache
+        cache-to: type=registry,ref=my-docker-image:cache,mode=max
 
-    # Uruchomienie kontenera
+    # Uruchomienie kontenera (tylko dla bieżącej architektury)
     - name: Run Docker container
       run: |
         docker run -d -p 8081:8081 -e PORT=8081 --name my-docker-container my-docker-image:latest
@@ -37,8 +41,8 @@ jobs:
 
     - name: Print Docker container logs
       run: docker logs my-docker-container
-      
-    # Sprawdzenie działania kontenera
+
+    # Testowanie działania kontenera
     - name: Test Container
       run: |
         curl http://localhost:8081
